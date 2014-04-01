@@ -72,8 +72,8 @@ build() {
    rm -rf "$BUILD"
    mkdir "$BUILD"
    cd "$BUILD"
-   lrelease-qt5 "$srcdir/$_gitname-build/CLCBrowser.pro"
-   qmake-qt5 "$srcdir/$_gitname-build/CLCBrowser.pro" -r -spec $SPEC
+   lrelease-qt5 "$srcdir/$_gitname-build/clcbrowser.pro"
+   qmake-qt5 "$srcdir/$_gitname-build/clcbrowser.pro" -r -spec $SPEC
    make -w
 }
 
