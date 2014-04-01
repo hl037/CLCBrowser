@@ -2,9 +2,9 @@
 pkgname=ardoise-git
 pkgver=20130620_0.4.0.0
 pkgrel=3
-pkgdesc="Unlimited drawing surface for quick diagrams and notes"
+pkgdesc="Command line controlled web browser"
 arch=('i686' 'x86_64')
-url="https://gitorious.org/ardoise"
+url="https://gitorious.org/clcbrowser/clcbrowser"
 license=('GPL3')
 groups=()
 depends=('qt5-base' 'qt5-tools')
@@ -18,9 +18,8 @@ install=
 source=()
 noextract=()
 md5sums=() #generate with 'makepkg -g'
-
-_gitroot=git://gitorious.org/ardoise/ardoise.git
-_gitname=ardoise
+_gitroot=git://gitorious.org/clcbrowser/clcbrowser.git
+_gitname=clcbrowser
 
 
 build() {
@@ -73,8 +72,8 @@ build() {
    rm -rf "$BUILD"
    mkdir "$BUILD"
    cd "$BUILD"
-   lrelease-qt5 "$srcdir/$_gitname-build/ardoise.pro"
-   qmake-qt5 "$srcdir/$_gitname-build/ardoise.pro" -r -spec $SPEC
+   lrelease-qt5 "$srcdir/$_gitname-build/CLCBrowser.pro"
+   qmake-qt5 "$srcdir/$_gitname-build/CLCBrowser.pro" -r -spec $SPEC
    make -w
 }
 
@@ -82,13 +81,13 @@ package() {
    BUILD="$srcdir/build"
    cd "$BUILD"
    install -d "$pkgdir/usr/bin" || return 1
-   install -Dm755 ardoise "$pkgdir/usr/bin" || return 1
+   install -Dm755 clcbrowser "$pkgdir/usr/bin" || return 1
    cd "$srcdir/$_gitname-build"
    install -d "$pkgdir/usr/share/icons" || return 1
-   install -Dm755 erase.png "$pkgdir/usr/share/icons/ardoise.png" || return 1
+   install -Dm755 erase.png "$pkgdir/usr/share/icons/clcbrowser.png" || return 1
    cd linux
    install -d "$pkgdir/usr/share/applications" || return 1
-   install -Dm755 ardoise.desktop "$pkgdir/usr/share/applications" || return 1
+   install -Dm755 clcbrowser.desktop "$pkgdir/usr/share/applications" || return 1
 }
 
 # vim:set ts=2 sw=2 et:

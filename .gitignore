@@ -2,6 +2,7 @@
 !.gitignore
 !*.html
 !**/*.cpp
+!**/*.c
 moc_*
 qrc_*
 !**/*.h
