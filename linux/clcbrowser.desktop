@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Categories=Network;Development;WebBrowser;WebDevelopment
+GenericName=Web browser
+GenericName[fr]=Navigateur web
+Exec=clcbrowser
+Comment=Commandline controlled web browser
+Comment[fr]=Navigateur web controllé via la ligne de commandes
+Icon=clcbrowser
+Name=CLCBrowser
+NoDisplay=false
+StartupNotify=false
+Terminal=0
+TerminalOptions=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
