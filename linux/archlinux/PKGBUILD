@@ -84,7 +84,7 @@ package() {
    install -Dm755 clcbrowser "$pkgdir/usr/bin" || return 1
    cd "$srcdir/$_gitname-build"
    install -d "$pkgdir/usr/share/icons" || return 1
-   install -Dm755 erase.png "$pkgdir/usr/share/icons/clcbrowser.png" || return 1
+   install -Dm755 clcbrowser.png "$pkgdir/usr/share/icons/clcbrowser.png" || return 1
    cd linux
    install -d "$pkgdir/usr/share/applications" || return 1
    install -Dm755 clcbrowser.desktop "$pkgdir/usr/share/applications" || return 1
