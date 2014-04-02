@@ -29,6 +29,16 @@ QObject(parent)
 {
 }
 
+void Model::addWindow(CLCWindow * w)
+{
+   p_windows.insert(w->name(), w);
+}
+
+void Model::addTab(CLCTab * t)
+{
+   p_tabs.insert(t->path(), t);
+}
+
 void Model::pm_loadUrl(const QString & tabpath, const QUrl & url)
 {
    CLCTab * tab;
@@ -41,7 +51,7 @@ void Model::pm_loadUrl(const QString & tabpath, const QUrl & url)
       if(it2 == p_windows.end())
       {
          win = new CLCWindow(l.first());
-         p_windows.insert(l[0], win);
+         addWindow(win);
          win->show();
       }
       else
@@ -50,7 +60,7 @@ void Model::pm_loadUrl(const QString & tabpath, const QUrl & url)
       }
       tab = new CLCTab(l[1], tabpath);
       win->addTab(tab);
-      p_tabs.insert(tabpath, tab);
+      addTab(tab);
    }
    else
    {
@@ -59,20 +69,22 @@ void Model::pm_loadUrl(const QString & tabpath, const QUrl & url)
    tab->load(url);
 }
 
-void Model::loadUrl(const QString & tabpath, const QUrl & url)
+QString Model::loadUrl(const QString & tabpath, const QUrl & url)
 {
+   QString p;
    switch(tabpath.count(QChar('%')))
    {
    case 0:
    //TODO : gérer avec les options new window/tab
-      pm_loadUrl("1%"+(tabpath.isEmpty() ? "1" : tabpath), url);
-      break;
+      p = "1%"+(tabpath.isEmpty() ? "1" : tabpath);
+      pm_loadUrl(p, url);
+      return p;
    case 1:
       pm_loadUrl(tabpath, url);
-      break;
+      return tabpath;
    default:
    //TODO : gérer ce cas.
-      break;
+      return QString();
    }
 }
 
@@ -108,6 +120,51 @@ void Model::execJs(const QString & tabpath, const QString & js)
    //TODO
 }
 
+void Model::resizeWindow(const QString & windowpath, const QString & w_geometry)
+{
+   QHash<QString, CLCWindow *>::iterator it = p_windows.find(windowpath);
+   if(it == p_windows.end()) return;
+   CLCWindow * window = it.value();
+   QStringList w_offset = w_geometry.split(QChar('+'));
+   QStringList w_size = w_offset[0].split('x');
+   int x,y,w,h;
+   if(w_size.size() == 2)
+   {
+      w = w_size[0].toInt();
+      h = w_size[1].toInt();
+   }
+   else
+   {
+      w = window->width();
+      h = window->height();
+   }
+   if(w_offset.size() == 3)
+   {
+      x = w_offset[1].toInt();
+      y = w_offset[2].toInt();
+   }
+   else
+   {
+      x = window->x();
+      y = window->y();
+   }
+   window->setGeometry(x, y, w, h);
+}
+
+void Model::resizeWindow(const QString & windowpath, const QRect & w_geometry)
+{
+   QHash<QString, CLCWindow *>::iterator it = p_windows.find(windowpath);
+   if(it == p_windows.end()) return;
+   CLCWindow * window = it.value();
+   window->setGeometry(w_geometry);
+}
+
+QString Model::getWindowPath(const QString & tabpath)
+{
+   QStringList l = tabpath.split(QChar('%'));
+   return l[0];
+}
+
 QString Model::listTabs()
 {
    QString pattern = "%1:%2\n";
@@ -118,4 +175,14 @@ QString Model::listTabs()
       res += pattern.arg(it.key(), it.value()->url().toString());
    }
    return res;
+}
+
+void Model::windowDestroyed(CLCWindow * w)
+{
+   p_windows.remove(w->name());
+}
+
+void Model::tabDestroyed(CLCTab * t)
+{
+   p_tabs.remove(t->path());
 }

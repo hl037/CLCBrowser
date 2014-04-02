@@ -21,6 +21,7 @@
 
 #include "clctab.h"
 
+#include "model.h"
 #include <QProgressBar>
 #include <QLabel>
 #include <QLineEdit>
@@ -53,7 +54,7 @@ p_webView(new QWebView)
 
 CLCTab::~CLCTab()
 {
-
+   Model::get().tabDestroyed(this);
 }
 
 void CLCTab::load(const QUrl & url)

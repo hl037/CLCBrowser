@@ -37,12 +37,17 @@ class Model : public QObject, public Singleton<Model>
 {
    Q_OBJECT
    friend class Singleton<Model>;
+   friend class CLCWindow;
+   friend class CLCTab;
 private:
    explicit Model(QObject *parent = 0);
 
    QHash<QString, CLCWindow *> p_windows;
    QHash<QString, CLCTab *> p_tabs;
 
+protected:
+   void addWindow(CLCWindow * w);
+   void addTab(CLCTab * t);
 
    /**
     * load \p url in specified \p tabpath.
@@ -51,15 +56,29 @@ private:
    void pm_loadUrl(const QString & tabpath, const QUrl & url);
 
 public:
-   void loadUrl(const QString & tabpath, const QUrl & url);
+   /**
+    * @return tabpath used if \p tabpath si empty.
+    */
+   QString loadUrl(const QString & tabpath, const QUrl & url);
    void deleteTab(const QString & tabpath);
    void execJs(const QString & tabpath, const QString & js);
+
+   /**
+    * resize the given window to the specified \p geometry . The format is WidthxHeight+offX+offY like X window system geometry.
+    * \note +offX+offY are optional
+    */
+   void resizeWindow(const QString & windowpath, const QString & w_geometry);
+   void resizeWindow(const QString & windowpath, const QRect & geometry);
+
+   QString getWindowPath(const QString & tabpath);
 
    QString listTabs();
 
 signals:
 
 public slots:
+   void windowDestroyed(CLCWindow * w);
+   void tabDestroyed(CLCTab * t);
 
 };
 

@@ -24,6 +24,7 @@
 
 #include "common.h"
 #include <QMainWindow>
+#include <QLabel>
 
 #include <QString>
 
@@ -38,12 +39,20 @@ class CLCWindow : public QMainWindow
 private:
    QString p_name;
    QTabWidget * p_tabs;
+   QLabel * p_size_lab;
 
 public:
    CLCWindow(const QString & _name, QWidget *parent = 0);
    ~CLCWindow();
 
    inline const QString & name() { return p_name; }
+
+protected:
+
+   void resizeEvent(QResizeEvent *e);
+   void moveEvent(QMoveEvent *e);
+
+   void printSize();
 
 private:
    void addTab(CLCTab * t);

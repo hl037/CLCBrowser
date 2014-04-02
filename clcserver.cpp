@@ -32,6 +32,7 @@ QTcpServer(parent),
 m_parser(),
 m_help(QStringList() << "h" << "help", tr("Show help")),
 m_tab(QStringList() << "t" << "tab", tr("Path to the tab with format window%tab"), tr("tab path")),
+m_geom(QStringList() << "g" << "geometry", tr("set the geometry of the window (synthax : WidthxHeight+OffX+OffY"), tr("geometry")),
 m_del(QStringList() << "d" << "delete", tr("Flag to delete the tab")),
 m_list(QStringList() << "l" << "ls" << "list", tr("List the tabs")),
 m_exit(QStringList() << "x" << "exit", tr("Exit CLCBrowser"))
@@ -39,6 +40,7 @@ m_exit(QStringList() << "x" << "exit", tr("Exit CLCBrowser"))
    m_parser.addPositionalArgument(tr("url"), tr("url to open"), tr("[url]"));
    m_parser.addOption(m_help);
    m_parser.addOption(m_tab);
+   m_parser.addOption(m_geom);
    m_parser.addOption(m_del);
    m_parser.addOption(m_list);
    m_parser.addOption(m_exit);
@@ -77,7 +79,15 @@ void CLCServer::parseArgs(const QStringList & args, QIODevice * d)
       d->waitForBytesWritten(10000);
       return;
    }
-   Model::get().loadUrl(tab, QUrl(addr));
+   if(!addr.isEmpty())
+   {
+      tab = Model::get().loadUrl(tab, QUrl(addr));
+   }
+   if(m_parser.isSet(m_geom))
+   {
+      QString winpath = Model::get().getWindowPath(tab);
+      Model::get().resizeWindow(winpath, m_parser.value(m_geom));
+   }
    return;
 }
 

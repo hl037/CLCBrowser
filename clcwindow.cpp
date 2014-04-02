@@ -24,21 +24,46 @@
 #include <QTabWidget>
 #include <QStatusBar>
 #include <QBoxLayout>
+#include <QResizeEvent>
 #include "model.h"
 #include "clctab.h"
 
 CLCWindow::CLCWindow(const QString & _name, QWidget *parent)
 : QMainWindow(parent),
 p_name(_name),
-p_tabs(new QTabWidget)
+p_tabs(new QTabWidget),
+p_size_lab(new QLabel)
 {
+   setAttribute(Qt::WA_DeleteOnClose, true);
    setWindowTitle(p_name);
    setCentralWidget(p_tabs);
+   statusBar()->addWidget(p_size_lab);
+   p_size_lab->setTextInteractionFlags(
+      Qt::TextSelectableByMouse |
+      Qt::TextSelectableByKeyboard |
+      Qt::LinksAccessibleByMouse |
+      Qt::LinksAccessibleByKeyboard
+   );
 }
 
 CLCWindow::~CLCWindow()
 {
+   Model::get().windowDestroyed(this);
+}
 
+void CLCWindow::resizeEvent(QResizeEvent * e)
+{
+   printSize();
+}
+
+void CLCWindow::moveEvent(QMoveEvent * e)
+{
+   printSize();
+}
+
+void CLCWindow::printSize()
+{
+   p_size_lab->setText(tr("Window geometry : %1").arg(QString("%1x%2+%3+%4").arg(width()).arg(height()).arg(x()).arg(y())));
 }
 
 void CLCWindow::addTab(CLCTab * t)

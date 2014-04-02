@@ -40,6 +40,7 @@ protected:
 
    QCommandLineOption m_help;
    QCommandLineOption m_tab;
+   QCommandLineOption m_geom;
    QCommandLineOption m_del;
    QCommandLineOption m_list;
    QCommandLineOption m_exit;
