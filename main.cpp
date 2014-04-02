@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
    if(!sock->waitForConnected())
    {
-
+      delete sock;
       if(QString(argv[argc-1]) == "-")
       {
          --argc;
@@ -80,6 +80,7 @@ int main(int argc, char *argv[])
       sock->waitForBytesWritten();
       sock->waitForReadyRead(500);
       std::cout << QString::fromUtf8(sock->readAll()).toStdString() << std::endl;
+      delete sock;
       return 0;
    }
 }

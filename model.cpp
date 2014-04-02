@@ -117,6 +117,8 @@ void Model::deleteTab(const QString & tabpath)
 
 void Model::execJs(const QString & tabpath, const QString & js)
 {
+   (void)tabpath;
+   (void)js;
    //TODO
 }
 

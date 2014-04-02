@@ -51,6 +51,7 @@ Fifo *  Fifo_ini(void (*destroy)(void*))
    f->last = NULL;
    f->size = 0;
    f->destroy = destroy;
+   return f;
 }
 
 void Fifo_destroy(Fifo * f)
@@ -151,7 +152,7 @@ Arguments * parse_commandline(const char * const cmd)
 
    int i;
 
-#define WRITE(c) {Fifo_enqueue(current_token, (void*) c);}
+#define WRITE(c) {Fifo_enqueue(current_token, (void*) (unsigned long) c);}
 #define W WRITE(*ptrcmd)
 #define WS {switch(*ptrcmd){ case 'n':WRITE('\n')break; case 'r':WRITE('\r')break; case 't':WRITE('\t')break; default:WRITE(*ptrcmd)break; }}
 #define SAVE \
@@ -160,7 +161,7 @@ Arguments * parse_commandline(const char * const cmd)
    char * str = malloc((len+1) * sizeof(char));\
    for(i=0 ; i<len ; ++i)\
    {\
-      str[i] = (char) Fifo_dequeue(current_token);\
+      str[i] = (char) (unsigned long) Fifo_dequeue(current_token);\
    }\
    str[i] = 0;\
    Fifo_enqueue(tokens, str);\

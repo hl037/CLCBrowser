@@ -51,12 +51,12 @@ CLCWindow::~CLCWindow()
    Model::get().windowDestroyed(this);
 }
 
-void CLCWindow::resizeEvent(QResizeEvent * e)
+void CLCWindow::resizeEvent(QResizeEvent * )
 {
    printSize();
 }
 
-void CLCWindow::moveEvent(QMoveEvent * e)
+void CLCWindow::moveEvent(QMoveEvent * )
 {
    printSize();
 }
