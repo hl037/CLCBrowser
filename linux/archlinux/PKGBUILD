@@ -1,7 +1,7 @@
 # Maintainer: Léo Flaventin Hauchecorne <hl037.prog@gmail.com>
 pkgname=clcbrowser-git
-pkgver=20130620_0.4.0.0
-pkgrel=3
+pkgver=1.0
+pkgrel=1
 pkgdesc="Command line controlled web browser"
 arch=('i686' 'x86_64')
 url="https://gitorious.org/clcbrowser/clcbrowser"
