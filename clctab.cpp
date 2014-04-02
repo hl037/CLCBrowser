@@ -65,7 +65,10 @@ void CLCTab::load(const QUrl & url)
 
 void CLCTab::load(const QString & addr)
 {
-   p_webView->load(QUrl(addr));
+   QUrl url;
+   if(!addr.indexOf(QString("file://"))) url =QUrl::fromLocalFile(addr);
+   else url = QUrl(addr);
+   p_webView->load(url);
    p_addr_le->setText(addr);
 }
 
