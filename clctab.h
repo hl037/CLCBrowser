@@ -52,7 +52,7 @@ public:
 
 public slots:
    void load(const QUrl & url);
-   void load(const QString & addr);
+   void load(QString addr);
    void changeAddr(const QUrl & url);
    void changeAddr(const QString & addr);
    void loadAddrBar();

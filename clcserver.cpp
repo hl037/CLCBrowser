@@ -81,7 +81,7 @@ void CLCServer::parseArgs(const QStringList & args, QIODevice * d)
    }
    if(!addr.isEmpty())
    {
-      tab = Model::get().loadUrl(tab, QUrl(addr));
+      tab = Model::get().loadUrl(tab, addr);
    }
    if(m_parser.isSet(m_geom))
    {

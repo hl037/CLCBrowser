@@ -39,7 +39,7 @@ void Model::addTab(CLCTab * t)
    p_tabs.insert(t->path(), t);
 }
 
-void Model::pm_loadUrl(const QString & tabpath, const QUrl & url)
+void Model::pm_loadUrl(const QString & tabpath, const QString & url)
 {
    CLCTab * tab;
    QHash<QString, CLCTab *>::iterator it = p_tabs.find(tabpath);
@@ -69,7 +69,7 @@ void Model::pm_loadUrl(const QString & tabpath, const QUrl & url)
    tab->load(url);
 }
 
-QString Model::loadUrl(const QString & tabpath, const QUrl & url)
+QString Model::loadUrl(const QString & tabpath, const QString & url)
 {
    QString p;
    switch(tabpath.count(QChar('%')))

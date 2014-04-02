@@ -53,13 +53,13 @@ protected:
     * load \p url in specified \p tabpath.
     * \note tabpath must be \c window%tab.
     */
-   void pm_loadUrl(const QString & tabpath, const QUrl & url);
+   void pm_loadUrl(const QString & tabpath, const QString & url);
 
 public:
    /**
     * @return tabpath used if \p tabpath si empty.
     */
-   QString loadUrl(const QString & tabpath, const QUrl & url);
+   QString loadUrl(const QString & tabpath, const QString & url);
    void deleteTab(const QString & tabpath);
    void execJs(const QString & tabpath, const QString & js);
 
