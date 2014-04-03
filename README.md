@@ -20,27 +20,27 @@ $&gt; clcbrowser [options] [url]
 
 ### Options:
 
--h, --help
+`-h, --help`
 Show help
 
 
--t, --tab &lt;tab path&gt;
+`-t, --tab &lt;tab path&gt;`
 Path to the tab with format window%tab
 
 
--g, --geometry &lt;geometry&gt;
+`-g, --geometry &lt;geometry&gt;`
 set the geometry of the window (syntax :WidthxHeight+OffX+OffY
     
 
--d, --delete
+`-d, --delete`
 Flag to delete the tab
 
 
--l, --ls, --list
+`-l, --ls, --list`
 List the tabs
 
 
--x, --exit
+`-x, --exit`
 Exit CLCBrowser
 
     
@@ -60,12 +60,10 @@ On archlinux, there is a package available on AUR.
 You'll need Qt 5 installed in your system, and qmake available in your path.
 You can build from the source availables on https://gitorious.org/clcbrowser/clcbrowser then, type the following command:
 
-
-$&gt; mkdir build
-$&gt; cd build
-$&gt; qmake ..
-$&gt; make
-
+    $&gt; mkdir build
+    $&gt; cd build
+    $&gt; qmake ..
+    $&gt; make
 
 Then, you can copy the executable produced in you bin path, or make a package for your distribution package manager.
 
