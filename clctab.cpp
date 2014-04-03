@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CLCBrowser. If not, see <http://www.gnu.org/licenses/>.
  *
  ********************************************/
 
@@ -63,10 +63,19 @@ void CLCTab::load(const QUrl & url)
    p_addr_le->setText(url.toString());
 }
 
+extern QByteArray htmlhelp;
+
 void CLCTab::load(QString addr)
 {
-   QUrl url(addr);
-   p_webView->load(url);
+   if(addr.compare("help", Qt::CaseInsensitive) == 0)
+   {
+      p_webView->setContent(htmlhelp, QString("text/html"), QUrl(addr));
+   }
+   else
+   {
+      QUrl url(addr);
+      p_webView->load(url);
+   }
    p_addr_le->setText(addr);
 }
 

@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CLCBrowser. If not, see <http://www.gnu.org/licenses/>.
  *
  ********************************************/
 
@@ -63,6 +63,10 @@ void CLCServer::parseArgs(const QStringList & args, QIODevice * d)
 
    QString tab = m_parser.value(m_tab);
    QString addr = m_parser.positionalArguments().isEmpty() ? "" : m_parser.positionalArguments()[0];
+   if(m_parser.isSet(m_help))
+   {
+      d->write(m_parser.helpText().toUtf8());
+   }
    if(m_parser.isSet(m_exit))
    {
       qApp->exit(0);

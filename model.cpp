@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CLCBrowser. If not, see <http://www.gnu.org/licenses/>.
  *
  ********************************************/
 
@@ -169,7 +169,7 @@ QString Model::getWindowPath(const QString & tabpath)
 
 QString Model::listTabs()
 {
-   QString pattern = "%1:%2\n";
+   QString pattern = "%1\n  --> %2\n";
    QString res;
    QHash<QString, CLCTab *>::iterator it = p_tabs.begin(), end = p_tabs.end();
    for(; it != end ; ++it)

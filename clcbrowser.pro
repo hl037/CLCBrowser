@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     settings.cpp \
     model.cpp \
     clcserver.cpp \
-    cmd_parser.c
+    cmd_parser.c \
+    htmlhelp.cpp
 
 HEADERS  += clcwindow.h \
     clctab.h \
