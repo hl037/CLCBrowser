@@ -1,13 +1,13 @@
 # Maintainer: Léo Flaventin Hauchecorne <hl037.prog@gmail.com>
 pkgname=clcbrowser-git
 pkgver=1.1
-pkgrel=1
-pkgdesc="Command line controlled web browser"
+pkgrel=2
+pkgdesc="Fully Command line and remote controllable web browser"
 arch=('i686' 'x86_64')
 url="https://gitorious.org/clcbrowser/clcbrowser"
 license=('GPL3')
 groups=()
-depends=('qt5-base' 'qt5-tools')
+depends=('qt5-base' 'qt5-tools' 'qt5-webkit')
 makedepends=('git')
 provides=()
 conflicts=()
