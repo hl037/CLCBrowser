@@ -25,7 +25,7 @@
 #include "common.h"
 #include <QWidget>
 
-#include <QWebView>
+#include <QWebEngineView>
 
 class QLineEdit;
 
@@ -39,7 +39,7 @@ private:
    QString p_name;
    QString p_path;
 
-   QWebView * p_webView;
+   QWebEngineView * p_webView;
    QLineEdit * p_addr_le;
 
 public:

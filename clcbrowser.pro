@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui webkit
+QT       += core gui webengine
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webenginewidgets
 
 TARGET = clcbrowser
 TEMPLATE = app

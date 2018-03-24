@@ -31,7 +31,7 @@ CLCTab::CLCTab(const QString & _name, const QString & _path, QWidget * parent) :
 QWidget(parent),
 p_name(_name),
 p_path(_path),
-p_webView(new QWebView)
+p_webView(new QWebEngineView)
 {
    QVBoxLayout * l0 = new QVBoxLayout;
 
